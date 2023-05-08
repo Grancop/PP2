@@ -1,0 +1,95 @@
+package apps;
+
+import adts.*;
+import interfaces.BSTInterface.TraversalType;
+
+public class AlphaBravoCharlie {
+
+	public static void main(String[] args) {
+		
+		BinarySearchTree<String> abcTree =
+				new BinarySearchTree<String>();
+		
+		abcTree.add("Alpha");        
+		abcTree.add("Always");
+		abcTree.add("Zebra");
+		abcTree.add("Charlie");
+		abcTree.add("Dance");
+		abcTree.add("Bravo");
+		abcTree.add("Yankee");
+		abcTree.add("Hotel");
+		abcTree.add("Bang");
+		abcTree.add("November");
+		
+		LLQ<String> qCheck = new LLQ<String>();
+		
+		System.out.println("Max (Should be 'Zebra'): " + abcTree.max());
+		System.out.println("Median (Should be 'Charlie'): " + abcTree.median());
+		System.out.println("Min (Should be 'Alpha'): " + abcTree.min());
+		System.out.println("Tree Height (Should be " + abcTree.treeHeight() + "): " + abcTree.treeHeight2());
+		
+		System.out.println("\nPre-Order: ");
+		
+		abcTree.setTraversalType(TraversalType.PREORDER);
+		qCheck.enqueue("Alpha");
+		qCheck.enqueue("Always");
+		qCheck.enqueue("Zebra");
+		qCheck.enqueue("Charlie");
+		qCheck.enqueue("Bravo");
+		qCheck.enqueue("Bang");
+		qCheck.enqueue("Dance");
+		qCheck.enqueue("Yankee");
+		qCheck.enqueue("Hotel");
+		qCheck.enqueue("November");
+		for (String name: abcTree) {
+			System.out.println("Should be' " + qCheck.dequeue() + "': " + name);
+		}
+		System.out.println("\nIn-Order: ");
+		qCheck.enqueue("Alpha");
+		qCheck.enqueue("Always");
+		qCheck.enqueue("Bang");
+		qCheck.enqueue("Bravo");
+		qCheck.enqueue("Charlie");
+		qCheck.enqueue("Dance");
+		qCheck.enqueue("Hotel");
+		qCheck.enqueue("November");
+		qCheck.enqueue("Yankee");
+		qCheck.enqueue("Zebra");
+		abcTree.setTraversalType(TraversalType.INORDER);
+		for (String name: abcTree) {
+			System.out.println("Should be' " + qCheck.dequeue() + "': " + name);
+		}
+		System.out.println("\nPost-Order: ");
+		qCheck.enqueue("Bang");
+		qCheck.enqueue("Bravo");
+		qCheck.enqueue("November");
+		qCheck.enqueue("Hotel");
+		qCheck.enqueue("Yankee");
+		qCheck.enqueue("Dance");
+		qCheck.enqueue("Charlie");
+		qCheck.enqueue("Zebra");
+		qCheck.enqueue("Always");
+		qCheck.enqueue("Alpha");
+		abcTree.setTraversalType(TraversalType.POSTORDER);
+		for (String name: abcTree) {
+			System.out.println("Should be' " + qCheck.dequeue() + "': " + name);
+		}
+		/*
+		System.out.println("\nReverse-Order: ");
+		qCheck.enqueue("Zebra");
+		qCheck.enqueue("Yankee");
+		qCheck.enqueue("November");
+		qCheck.enqueue("Hotel");
+		qCheck.enqueue("Dance");
+		qCheck.enqueue("Charlie");
+		qCheck.enqueue("Bravo");
+		qCheck.enqueue("Bang");
+		qCheck.enqueue("Always");
+		qCheck.enqueue("Alpha");
+		abcTree.setTraversalType(TraversalType.REVORDER);
+		for (String name: abcTree) {
+			System.out.println("Should be' " + qCheck.dequeue() + "': " + name);
+		}
+		*/
+	}
+}
